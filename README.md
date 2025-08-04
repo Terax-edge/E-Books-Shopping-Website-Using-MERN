@@ -2,7 +2,7 @@
 
 ** This is a full-stack MERN (MongoDB, Express, React, Node.js) application for selling e-books in PDF format. Buyers can browse, filter, and view e-books, while admins can upload and manage the catalog through a dashboard.
 
-# Screenshots
+## Screenshots
 
 ## 🚀 Features
 
