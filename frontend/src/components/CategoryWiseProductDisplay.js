@@ -6,16 +6,15 @@ import { VscTriangleLeft } from "react-icons/vsc";
 import displayINRCurrency from '../helpers/displayCurrency';
 import addToCart from '../helpers/addToCart';
 import Context from '../context';
+import scrollTop from '../helpers/scrollTop';
 
-const HorizontalCardProduct = ({ category, heading }) => {
+const CategoryWiseProductDisplay = ({ category, heading }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const loadingList = new Array(13).fill(null);
 
-  const [scroll,setScroll] = useState(0)
-  const scrollElement = useRef()
 
-  const { fetchUserAddToCart } = useContext(Context)
+  const { fetchUserAddToCart} = useContext(Context)
 
   const handleAddToCart = async(e,id)=>{
     await addToCart(e,id)
@@ -40,18 +39,12 @@ const HorizontalCardProduct = ({ category, heading }) => {
     fetchData();
   }, [category]);
 
-  const scrollRight = () =>{
-    scrollElement.current.scrollLeft += 300
-  }
-   const scrollLeft = () =>{
-    scrollElement.current.scrollLeft -= 300
-  }
-
+  
   if (loading) {
     return (
       <div className="container px-1 my-4 ml-4">
         <h2 className="text-2xl font-semibold py-2">{heading}</h2>
-        <div className="flex gap-4 overflow-x-auto">
+        <div className=" justify-between gap-4 overflow-x-auto">
           {loadingList.map((_, i) => (
             <div
               key={i}
@@ -66,20 +59,19 @@ const HorizontalCardProduct = ({ category, heading }) => {
   }
 
   return (
-    <div className="contianer px-1 my-4 ml-4 relative">
+    <div className="contianer px-1 my-4 ml-4 relative ">
          <h2 className="text-2xl font-semibold py-2">{heading}</h2>
-    <div className="flex gap-4 overflow-x-auto transition-all " ref={scrollElement}>
-      <button  className='  bg-slate-300 hover:bg-black hover:text-white shadow-md rounded-full p-4   absolute left-0 bottom-20 text-lg hidden md:block' onClick={scrollLeft}><VscTriangleLeft /></button>
-      <button  className='  bg-slate-300 hover:bg-black hover:text-white shadow-md rounded-full p-4 absolute right-0 bottom-20 text-lg hidden md:block' onClick={scrollRight}><VscTriangleRight /></button>
+    <div className=" grid grid-cols-[repeat(auto-fit,minmax(300px,320px))]  justify-between overflow-x-auto transition-all  " >
+
 
 
         {data.length === 0 && <p className="text-sm text-gray-600">No products found.</p>}
 
         {data.map((product, index) => (
-          <Link to={"product/"+ product?._id}
+          <Link to={"/product/"+ product?._id}
             key={product?._id || index}
-            className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
-            <div className="bg-slate-900 h-full p-2 min-w-[120px] md:min-w-[145px] flex items-center justify-center">
+            className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex mb-4 " onClick={scrollTop}>
+            <div className="bg-slate-900 h-full p-2 min-w-[120px] md:min-w-[145px] flex items-center justify-center ">
               {product?.productImage?.[0] ? (
                 <img
                   src={product.productImage[0]}
@@ -109,4 +101,4 @@ const HorizontalCardProduct = ({ category, heading }) => {
   );
 };
 
-export default HorizontalCardProduct;
+export default CategoryWiseProductDisplay;

@@ -5,6 +5,8 @@ require('dotenv').config()
 const connectDB = require('./config/db')
 const router = require('./routes/index')
 
+
+
 const app = express()
 app.use(cors({
     origin : `http://localhost:3000`,
@@ -17,12 +19,12 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' })); // for form-data
 app.use(cookieParser())
 app.use("/api",router)
 
-const PORT = 8080 || process.env.PORT
+const PORT = process.env.PORT
 
 connectDB().then(()=>{
     app.listen(PORT,()=>{
         console.log("Connect to DB")
-    console.log("Sever is running")
+    console.log(`🚀 Server running at http://localhost:${PORT}`)
 })
 
 })

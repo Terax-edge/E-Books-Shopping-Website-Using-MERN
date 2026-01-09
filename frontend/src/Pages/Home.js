@@ -10,10 +10,17 @@ const Home = () => {
     <div>
       <BannerProduct/>
 
-      <HorizontalCardProduct category={"storyBooks"} heading={"Best Reader's Choice Books"} />
+      
       <HorizontalCardProduct category={"comicBooks"} heading={"Year of the Books Sold"} />
+
       <HorizontalCardProduct category={"technicalBooks"} heading={"Technological Books of 21'st Century"} />
+
+      <HorizontalCardProduct category={"storyBooks"} heading={"Best Reader's Choice Books"} />
+
       <HomeProduct/>
+
+      
+      
       
       
     </div>

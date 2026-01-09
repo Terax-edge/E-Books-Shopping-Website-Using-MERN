@@ -10,6 +10,7 @@ const fetchCategoryWiseProduct = async (category) => {
       body: JSON.stringify({ category }),
       credentials: "include", // if you rely on cookies/auth
     });
+    
 
     if (!response.ok) {
       throw new Error(`Server responded ${response.status}`);
@@ -22,5 +23,6 @@ const fetchCategoryWiseProduct = async (category) => {
     return { success: false, error: true, data: [] };
   }
 };
+
 
 export default fetchCategoryWiseProduct;
