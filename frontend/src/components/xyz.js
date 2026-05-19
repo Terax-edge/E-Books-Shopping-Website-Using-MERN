@@ -10,9 +10,9 @@ const AdminProductCard = ({ fetchdata }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/all-products");
+       const response = await fetch("${process.env.REACT_APP_BACK_URL}/api/all-products");
         const data = await response.json();
-
+        console.log("Finding data:", data.products);
         // ✅ Defensive check
         if (data.success && Array.isArray(data.products)) {
           setProducts(data.products);
