@@ -12,7 +12,7 @@ const AdminPanel = () => {
     useEffect(()=>{
         if((user?.role !== ROLE.ADMIN))
           navigate("/")
-    },[user])
+    },[user, navigate])
   return (
     <div className='flex min-h-[calc(100vh-120px)]'>
   {/* Sidebar */}
