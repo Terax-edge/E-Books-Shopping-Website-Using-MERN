@@ -20,7 +20,7 @@ const UploadProduct = ({ onClose,
     selling: ""
   });
 
-  const [uploadProductImageInput, setUploadProductImageInput] = useState("");
+
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -42,7 +42,7 @@ const UploadProduct = ({ onClose,
       return;
     }
 
-    setUploadProductImageInput(file.name);
+
 
     const uploadImageCloudinary = await uploadImage(file);
 

@@ -12,7 +12,7 @@ const HorizontalCardProduct = ({ category, heading }) => {
   const [loading, setLoading] = useState(false);
   const loadingList = new Array(13).fill(null);
 
-  const [scroll,setScroll] = useState(0)
+ 
   const scrollElement = useRef()
 
   const { fetchUserAddToCart } = useContext(Context)
