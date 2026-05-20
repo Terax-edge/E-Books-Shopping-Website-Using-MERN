@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import SummaryApi from '../common'
 import VerticalCard from '../components/verticalProductCard'
 
@@ -23,7 +23,7 @@ const SearchProduct = () => {
 
     useEffect(()=>{
         fetchProduct()
-    },[])
+    },[query.search])
   return (
     <div className='container mx-auto p-4'>
       {

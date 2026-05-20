@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import image1 from '../assest/banner/b1.jpg'
 import image2 from '../assest/banner/b2.jpg'
 import image3 from '../assest/banner/b3.jpg'
@@ -10,7 +10,6 @@ import image3M from '../assest/banner/b3.jpg'
 import image4M from '../assest/banner/b4.jpg'
 import { VscTriangleLeft } from "react-icons/vsc";
 
-
 const BannerProduct = () => {
 
   const [currentImage, setCurrentImage] = useState(0)
@@ -18,31 +17,36 @@ const BannerProduct = () => {
     image1, image2, image3, image4
   ]
 
-    const mobileImages =  [
+  const mobileImages =  [
     image1M, image2M, image3M, image4M
   ]
-  const nextImage = () => {
-    if(desktopImages.length-1 > currentImage ){
-    setCurrentImage(preve => preve + 1)
-  }
-}
 
-const preveImage = () => {
-    if(currentImage != 0 ){
-    setCurrentImage(preve => preve - 1)
-  }
-}
+  const nextImage = useCallback(() => {
+    setCurrentImage(preve => {
+      if(desktopImages.length - 1 > preve){
+        return preve + 1
+      }
+      return preve
+    })
+  }, [desktopImages.length])
 
-useEffect(()=>{
-  const interval = setInterval(()=>{
-    if(desktopImages.length - 1 > currentImage){
-      nextImage()
-    }else{
-      setCurrentImage(0)
+  const preveImage = useCallback(() => {
+    if(currentImage !== 0){
+      setCurrentImage(preve => preve - 1)
     }
-  },5000)
-  return ()=> clearInterval(interval)
-},[currentImage])
+  }, [currentImage])
+
+  useEffect(()=>{
+    const interval = setInterval(()=>{
+      setCurrentImage(preve => {
+        if(desktopImages.length - 1 > preve){
+          return preve + 1
+        }
+        return 0
+      })
+    },5000)
+    return ()=> clearInterval(interval)
+  },[desktopImages.length])
 
   return (
     <div className=''>
@@ -58,11 +62,11 @@ useEffect(()=>{
             {
            desktopImages.map((imageURl , index)=>{
               return(
-                  <div className='w-full h-full min-w-full min-h-full transition-all relative' key={imageURl} style= {{transform: `translateX(-${currentImage*100}%)`}}>
+                  <div className='w-full h-full min-w-full min-h-full transition-all relative' key={imageURl} style={{transform: `translateX(-${currentImage*100}%)`}}>
                     <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-40"><h1 className='text-white text-2xl md:text-3xl font-bold text-center px-4 max-w-3xl mx-auto leading-snug'>
                       Design and Development of a MERN Stack-Based <br /> Digital Bookstore for Selling E-Books in PDF Format</h1>
                     </div>
-                    <img src={imageURl} className='w-full h-full'/>
+                    <img src={imageURl} alt="Banner" className='w-full h-full'/>
               
                   </div>
               )
@@ -75,8 +79,8 @@ useEffect(()=>{
             {
           mobileImages.map((imageURl , index)=>{
               return(
-                  <div className='w-full h-full min-w-full min-h-full transition-all' key={imageURl} style= {{transform: `translateX(-${currentImage*100}%)`}}>
-              <img src={imageURl} className='w-full h-full'/>
+                  <div className='w-full h-full min-w-full min-h-full transition-all' key={imageURl} style={{transform: `translateX(-${currentImage*100}%)`}}>
+              <img src={imageURl} alt="Banner" className='w-full h-full'/>
             </div>
               )
             })

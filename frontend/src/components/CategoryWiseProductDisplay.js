@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import fetchCategoryWiseProduct from '../helpers/fetchCategoryWiseProduct';
-import { VscTriangleRight } from "react-icons/vsc";
-import { VscTriangleLeft } from "react-icons/vsc";
+
 import displayINRCurrency from '../helpers/displayCurrency';
 import addToCart from '../helpers/addToCart';
 import Context from '../context';

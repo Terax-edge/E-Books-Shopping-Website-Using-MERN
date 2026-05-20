@@ -27,13 +27,15 @@ const Cart = () => {
             setData(responseData.data)
         }
     }
-    const handleLoading = async() => {
+   {/**  const handleLoading = async() => {
           await  fetchData()
     }
+          */}
 
     useEffect(()=>{
         setLoading(true)
-        handleLoading()
+        fetchData()
+        //handleLoading()
         setLoading(false)
         
     },[])

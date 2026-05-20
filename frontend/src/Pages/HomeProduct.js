@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import SummaryApi from '../common'
-import AdminProductCard from '../components/AdminProductCard'
 import displayINRCurrency from '../helpers/displayCurrency';
 import addToCart from '../helpers/addToCart';
 import { Link } from 'react-router-dom';
